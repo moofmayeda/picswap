@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tagged = Tag.where(user_id: @user.id)
   end
 
 private
