@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :photos do
       resources :tags
+      resources :favorites
     end
   end
   resources :sessions

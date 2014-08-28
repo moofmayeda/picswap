@@ -1,0 +1,7 @@
+class FavoritesController < ApplicationController
+  def create
+    @photo = Photo.find(params[:photo_id])
+    current_user.favorites.create(photo_id: @photo.id)
+    redirect_to user_photo_path(@photo.user, @photo)
+  end
+end

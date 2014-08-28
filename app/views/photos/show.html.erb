@@ -1,5 +1,8 @@
 <h3><%= @photo.description %></h3>
 <p><%= image_tag @photo.picture.url %></p>
+
+<%= link_to "mark favorite", user_photo_favorites_path(@user, @photo), data: {method: "post"}, class: "btn btn-primary" %>
+
 <p>
   Tagged Users: <% @photo.users.each do |user| %>
   <button class="btn btn-default"><%= user.username + "  " %><%= link_to "x", user_photo_tag_path(@user, @photo, @photo.tags.find_by(user_id: user.id)), data: {confirm: "Are you sure?", method: "delete"} %></button>
