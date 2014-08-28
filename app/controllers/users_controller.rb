@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :authorize, only: [:show]
+
   def index
   end
 
@@ -15,6 +17,10 @@ class UsersController < ApplicationController
     else
       render('new')
     end
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
 private
