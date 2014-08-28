@@ -2,7 +2,7 @@
 <p><%= image_tag @photo.picture.url %></p>
 <p>
   Tagged Users: <% @photo.users.each do |user| %>
-  <%= user.username + " -" %>
+  <button class="btn btn-default"><%= user.username + "  " %><%= link_to "x", user_photo_tag_path(@user, @photo, @photo.tags.find_by(user_id: user.id)), data: {confirm: "Are you sure?", method: "delete"} %></button>
   <% end %>
 </p>
 
