@@ -7,8 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <%= flash[:notice] %>
+    <%= flash[:alert] %>
+    <%= yield %>
+  </div>
+  <hr>
+  <%= link_to "Sign Up", new_user_path, class:"btn btn-info" %>
 </body>
 </html>
