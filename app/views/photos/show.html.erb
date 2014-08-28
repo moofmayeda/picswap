@@ -1,2 +1,14 @@
 <h3><%= @photo.description %></h3>
 <p><%= image_tag @photo.picture.url %></p>
+<p>
+  Tagged Users: <% @photo.users.each do |user| %>
+  <%= user.username + " -" %>
+  <% end %>
+</p>
+
+<% if User.all.length > @photo.users.length %>
+  <%= form_for [@user, @photo, @tag] do |f| %>
+    <%= f.collection_select :user_id, User.all - @photo.users, :id, :username %>
+    <%= f.submit "Tag 'em", class: "btn btn-primary" %>
+  <% end %>
+<% end %>
