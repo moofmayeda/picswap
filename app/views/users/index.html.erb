@@ -1,5 +1,3 @@
-<%= link_to "Add Photos", new_user_photo_path(current_user), class:"btn btn-success" %>
-<hr>
 <div class="row">
   <div class="col-md-8">
     <div class="panel panel-default">
@@ -7,10 +5,8 @@
         <h3 class="panel-title">Recommended Photos</h3>
       </div>
       <div class="panel-body">
-        <% @users.each do |user| %>
-          <% user.photos.each do |photo| %>
-            <p><%= link_to "<button class='btn btn-default'>#{image_tag photo.picture.url(:medium)}<p>#{user.username}</p></button>".html_safe, user_path(user) %>
-          <% end %>
+        <% current_user.recommended.each do |photo| %>
+          <%= link_to "<button class='btn btn-default'>#{image_tag photo.picture.url(:medium)}<p>#{User.find(photo.user_id).username}</p></button>".html_safe, user_path(User.find(photo.user_id)) %>
         <% end %>
       </div>
     </div>
@@ -22,7 +18,7 @@
       </div>
       <div class="panel-body">
         <% @users.each do |user| %>
-          <p><%= link_to "<button class='btn btn-default'>#{image_tag user.avatar.url(:thumb)}<p>#{user.username}</p></button>".html_safe, user_path(user) %>
+          <p><%= link_to "<button class='btn btn-default'>#{image_tag user.avatar.url(:thumb)}<p>#{user.username}</p></button>".html_safe, user_path(user) %></p>
         <% end %>
       </div>
     </div>
