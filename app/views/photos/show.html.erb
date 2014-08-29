@@ -1,7 +1,7 @@
 <h3><%= @photo.description %></h3>
 <p><%= image_tag @photo.picture.url %></p>
 
-<%= link_to "mark favorite", user_photo_favorites_path(@user, @photo), data: {method: "post"}, class: "btn btn-primary" %>
+<p><%= link_to "mark favorite <span class='badge'>#{@photo.faved}</span>".html_safe, user_photo_favorites_path(@user, @photo), data: {method: "post"}, class: "btn btn-primary" %></p>
 
 <p>
   Tagged Users: <% @photo.users.each do |user| %>
