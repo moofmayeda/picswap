@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= @user.username %> <small><%= @user.email %></small></h1>
+  <h1><%= image_tag @user.avatar.url(:thumb) %><%= @user.username %> <small><%= @user.email %></small></h1>
 </div>
 
 
