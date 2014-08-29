@@ -1,8 +1,11 @@
 <h3><%= @photo.description %></h3>
 <p><%= image_tag @photo.picture.url %></p>
 
-<p><%= link_to "mark favorite <span class='badge'>#{@photo.faved}</span>".html_safe, user_photo_favorites_path(@user, @photo), data: {method: "post"}, class: "btn btn-primary" %></p>
-
+<p><% if current_user.favorites.find_by(photo_id: @photo.id) %>
+    <%= link_to "unfavorite <span class='badge'>#{@photo.faved}</span>".html_safe, user_photo_favorite_path(@user, @photo, current_user.favorites.find_by(photo_id: @photo.id)), data: {method: "delete"}, class: "btn btn-danger" %></p>
+  <% else %>
+    <%= link_to "mark favorite <span class='badge'>#{@photo.faved}</span>".html_safe, user_photo_favorites_path(@user, @photo), data: {method: "post"}, class: "btn btn-primary" %></p>
+  <% end %>
 <p>
   Tagged Users: <% @photo.users.each do |user| %>
   <button class="btn btn-default"><%= user.username + "  " %><%= link_to "x", user_photo_tag_path(@user, @photo, @photo.tags.find_by(user_id: user.id)), data: {confirm: "Are you sure?", method: "delete"} %></button>
