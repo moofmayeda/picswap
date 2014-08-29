@@ -2,8 +2,9 @@
   <h1><%= image_tag @user.avatar.url(:thumb) %><%= @user.username %> <small><%= @user.email %></small></h1>
 </div>
 
+<%= link_to "#{@user.username}'s Photos", user_photos_path(@user), class: "btn btn-info" %>
 
+<h3><%= @user.username %>'s Tagged Photos</h3>
 <% @tagged.each do |tag| %>
   <%= link_to (image_tag tag.photo.picture.url(:thumb)), user_photo_path(@user, tag.photo) %>
 <% end %>
-

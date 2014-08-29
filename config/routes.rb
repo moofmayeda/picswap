@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :users do
-    resources :photos do
-      resources :tags
-      resources :favorites
+  resources :users, except: [:edit, :update, :destroy] do
+    resources :photos, except: [:edit, :update, :destroy] do
+      resources :tags, only: [:create, :destroy]
+      resources :favorites, only: [:create, :destroy]
     end
   end
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
 
 end
