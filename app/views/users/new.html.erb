@@ -1,4 +1,9 @@
-<h1> Sign Up!!! </h1>
+<div class="jumbotron">
+  <h1>PICSWAP</h1>
+  <p>Instantly share photos with friends</p>
+</div>
+
+<h4>Just fill out the form below and include a profile picture to get started.</h4>
 
 <%= form_for @user, :url => users_path, :html => { multipart: true } do |f| %>
   <% if @user.errors.any? %>
